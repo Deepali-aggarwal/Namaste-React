@@ -60,8 +60,12 @@
     "utility-types": "^3.11.0",
     "weak-lru-cache": "^1.2.2"
   },
+  "browserlist": [
+    "last 2 versions"
+  ],
   "keywords": [
     "software",
     "react"
   ]
+
 }
