@@ -13,19 +13,19 @@ root.render(parent) */
 //JSX (TRANSPILED before it reaches the JS) - parcel
 //JSX => BABEL Transpiles it to React.createElement => ReactElement.JS object => HTMLelement(render)
 
-const Title = () => (
-    <h1 className="head" tabIndex="5">
-        Namaste react using JSX    
-    </h1>
-);
+// const Title = () => (
+//     <h1 className="head" tabIndex="5">
+//         Namaste react using JSX    
+//     </h1>
+// );
 
-const HeadingComponent = () => (
-    <div id="container">
-        <Title />
-        <Title></Title>
-        <h1 className="heading">Namaste React Functional Component</h1>
-    </div>
-);
+// const HeadingComponent = () => (
+//     <div id="container">
+//         <Title />
+//         <Title></Title>
+//         <h1 className="heading">Namaste React Functional Component</h1>
+//     </div>
+// );
 
 // React Component
 // class based component - old
