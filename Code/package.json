@@ -10,7 +10,10 @@
   "author": "Deepali",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.16.4"
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "parcel": "^2.16.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "ansi-styles": "^4.3.0",
@@ -62,7 +65,7 @@
     "utility-types": "^3.11.0",
     "weak-lru-cache": "^1.2.2"
   },
-  "browserlist": [
+  "browserslist": [
     "last 2 versions"
   ],
   "keywords": [
