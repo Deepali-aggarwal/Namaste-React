@@ -18,3 +18,27 @@
     padding: 10px;
     margin: 10px;
 }
+
+.res-card {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin: 5px;
+}
+
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.Search {
+    padding: 10px;
+}
+.res-logo{
+    width: 190px;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+}
