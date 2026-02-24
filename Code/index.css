@@ -1,7 +1,20 @@
-/* #heading{
-    color : red;
-} */
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
 
-/* #parent{
-    color: aqua;
-} */
+.Logo {
+    width: 100px;
+}
+
+.Nav-items > ul{
+    display: flex;
+    font-size: 20px;
+    list-style-type: none;
+}
+
+.Nav-items > ul > li {
+    padding: 10px;
+    margin: 10px;
+}
