@@ -21,3 +21,25 @@
 - HTTPs 
 - Tree shaking - remove unused code 
 - Different dev and prod bundles
+
+# FOOD DELIVERY APP OVERVIEW
+
+/**
+* Header
+* Logo
+* Nav items
+* Body
+* Search
+* RestaurantContainer
+* RestaurantCard
+*    - Img,
+*    - name of restaurant, 
+*    - star rating,
+*    - cuisines , 
+*    - time of delivery
+* Footer
+* - Copyright
+* - links
+* - address
+* - contact info
+*/
