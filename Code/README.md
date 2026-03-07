@@ -32,25 +32,29 @@
 * Search
 * RestaurantContainer
 * RestaurantCard
-*    - Img,
-*    - name of restaurant, 
-*    - star rating,
-*    - cuisines , 
-*    - time of delivery
+    - Img,
+    - name of restaurant, 
+    - star rating,
+    - cuisines , 
+    - time of delivery
 * Footer
-* - Copyright
-* - links
-* - address
-* - contact info
+ - Copyright
+ - links
+ - address
+ - contact info
 */
 
-Two types of Export/Import
+# Two types of Export/Import :
 
-- Default Export/Import
-export default Component;
-import component from "path";
+* Default Export/Import
+- export default Component;
+- import component from "path";
 
-- Named Export/Import
+* Named Export/Import
+- export const Component;
+- import {component } from "path";
 
-export const Component;
-import {component } from "path";
+# React Hooks
+* (Normal JS utility function)
+- useState() : manages state in a component
+- useEffect() :performs side effects (API calls, timers, etc.)
