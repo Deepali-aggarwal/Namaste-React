@@ -7,9 +7,10 @@ type RestaurantData = {
     avgRating: number;
     costForTwo: string;
     cloudinaryImageId: string;
-    sla: {
+    sla:{
         deliveryTime: number;
-    };
+    }
+    
 }
 type RestaurantCardProps = {
     resData: RestaurantData;
