@@ -58,3 +58,7 @@
 * (Normal JS utility function)
 - useState() : manages state in a component
 - useEffect() :performs side effects (API calls, timers, etc.)
+
+# 2 types routing in web apps
+- client side routing
+- server side routing
