@@ -1,6 +1,7 @@
 import {useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import { MENU_API } from "../utils/Constant";
 
 interface RestaurantInfo {
   name: string;
@@ -12,6 +13,9 @@ interface RestaurantInfo {
 const RestaurantMenu = () => {
     const { resId } = useParams<{ resId: string }>();
     const [resInfo , setResInfo] = useState<RestaurantInfo | null>(null);
+
+    const [menuData , setmenuData] = useState<RestaurantInfo | null>(null);
+
     useEffect(() => {
         if(resId){
             fetchMenu();
@@ -23,14 +27,26 @@ const RestaurantMenu = () => {
     const fetchMenu = async() => {
 
         const data = await fetch (
-            "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&submitAction=ENTER&restaurantId=" + resId
+            MENU_API + resId
         )
         const json = await data.json();
         console.log(json);
+
+        setmenuData(json?.data);
         setResInfo(json?.data?.cards[2]?.card?.card?.info);
     } 
 
-    const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardsfroupMap?.REGULAR?.cards[1]?.card?.card[0]?.dish
+    const regularCards = menuData?.cards
+        ?.find((c: any) => c.groupedCard)
+        ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+    const itemCards = regularCards
+        ?.map((c: any) => c.card?.card?.itemCards)
+        ?.flat()
+        ?.filter(Boolean);
+
+    console.log(itemCards);
+
 
     return !resInfo ? <Shimmer /> : (
         <div className= "Menu">
@@ -40,9 +56,11 @@ const RestaurantMenu = () => {
             <h4>{resInfo.costForTwoMessage}</h4>
             <h2>Menu</h2>
             <ul>
-                <li>Biryani</li>
-                <li>Burger</li>
-                <li>Thumps up</li>
+                {itemCards?.map((item: any, index: Number) => (
+                    <li key={`${item.card.info.id}-${index}`}>
+                        {item.card.info.name} - {'Rs '}{item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+                    </li>
+                ))}
             </ul>
         </div>
     )
