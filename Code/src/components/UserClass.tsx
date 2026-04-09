@@ -6,6 +6,11 @@ export interface UserClassProps{
 interface UserClassState {
     count: number;
     count2: number;
+    userInfo : {
+        name: string;
+        location : string;
+        bio: string;
+    }
 }
 
 class UserClass extends React.Component<UserClassProps, UserClassState>{
@@ -17,12 +22,28 @@ class UserClass extends React.Component<UserClassProps, UserClassState>{
         this.state = {
             count: 0,
             count2: 2,
+            userInfo: {
+                name: "Dummy",
+                location: "Default",
+                bio : "xyz"
+            }
         }
         console.log("child constructor");
     }
 
-    componentDidMount(): void {
-        console.log("child componentdidmount")
+    async componentDidMount() {
+        console.log("child componentdidmount ")
+
+        const data = await fetch("https://api.github.com/users/Deepali-aggarwal");
+        const json = await data.json();
+        console.log(json);
+
+        this.setState({
+            userInfo: json,
+        })
+    }
+    componentDidUpdate(): void{
+        console.log("component did update");
     }
     render(){
 
@@ -39,9 +60,10 @@ class UserClass extends React.Component<UserClassProps, UserClassState>{
                     })
 
                 }}>Count Increase</button>
-                <h2>Name: {this.props.name}</h2>
-                <h3>Location: Delhi</h3>
-                <h4>Contact: deepali1234@gmail.com</h4>
+                <h2>Name: {this.state.userInfo.name}</h2>
+                <h3>Location: {this.state.userInfo.location}</h3>
+                <h4>Bio: {this.state.userInfo.bio}</h4>
+
             </div>
         )
     }
