@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface UserProps {
     name : string;
 }
+useEffect(() => {
+
+}, []);
+
 
 const User = (props : UserProps) => {
     const [count] = useState(0);
