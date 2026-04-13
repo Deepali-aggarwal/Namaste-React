@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 interface UserProps {
     name : string;
 }
-
-
-
 const User = (props : UserProps) => {
     const [count] = useState(0);
     const [count2] = useState(0);
