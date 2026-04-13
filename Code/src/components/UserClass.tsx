@@ -14,6 +14,7 @@ interface UserClassState {
 }
 
 class UserClass extends React.Component<UserClassProps, UserClassState>{
+    timer?: ReturnType<typeof setInterval>;
 
     constructor(props: UserClassProps){
         super(props); //calling parent of constructor
@@ -32,6 +33,10 @@ class UserClass extends React.Component<UserClassProps, UserClassState>{
     }
 
     async componentDidMount() {
+
+        this.timer = setInterval(() => {
+            console.log("NAMASTE REACT op")
+        })
         console.log("child componentdidmount ")
 
         const data = await fetch("https://api.github.com/users/Deepali-aggarwal");
@@ -44,6 +49,10 @@ class UserClass extends React.Component<UserClassProps, UserClassState>{
     }
     componentDidUpdate(): void{
         console.log("component did update");
+    }
+    componentWillUnmount(): void {
+        clearInterval(this.timer);  
+        console.log("componenet will unmount")
     }
     render(){
 
