@@ -2,41 +2,42 @@ import {useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { MENU_API } from "../utils/Constant";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { MenuItemCard } from "../types/menu";
 
-interface RestaurantInfo {
-  name: string;
-  costForTwoMessage: string;
-  cuisines: string[];
-  cloudinaryImageId: string;
-}
+// interface CategoryCard {
+//   card?: {
+//     card?: {
+//       title?: string;
+//       itemCards?: MenuItemCard[];
+//     };
+//   };
+// }
 
 const RestaurantMenu = () => {
     const { resId } = useParams<{ resId: string }>();
-    const [resInfo , setResInfo] = useState<RestaurantInfo | null>(null);
 
-    const [menuData , setmenuData] = useState<RestaurantInfo | null>(null);
+    const { resInfo , menuItems  } = useRestaurantMenu(resId!);
 
-    useEffect(() => {
-        if(resId){
-            fetchMenu();
-        }
-    }, [resId]);
+    // useEffect(() => {
+    //     if(resId){
+    //         fetchMenu();
+    //     }
+    // }, [resId]);
 
-    console.log("resId:", resId);
+    // console.log("resId:", resId);
 
-    const fetchMenu = async() => {
+    // const fetchMenu = async() => {
 
-        const data = await fetch (
-            MENU_API + resId
-        )
-        const json = await data.json();
-        console.log(json);
+    //     const data = await fetch (
+    //         MENU_API + resId
+    //     )
+    //     const json = await data.json();
+    //     console.log(json);
 
-        setmenuData(json?.data);
-        setResInfo(json?.data?.cards[2]?.card?.card?.info);
-    } 
+    // } 
 
-    const regularCards = menuData?.cards
+    const regularCards = menuItems?.cards
         ?.find((c: any) => c.groupedCard)
         ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
