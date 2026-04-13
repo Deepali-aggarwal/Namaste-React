@@ -62,3 +62,10 @@
 # 2 types routing in web apps
 - client side routing
 - server side routing
+
+# BUNDLING also called as
+- chunkling
+- code splitting
+- dynamic bundling
+- lazy loading
+- on demand loading
