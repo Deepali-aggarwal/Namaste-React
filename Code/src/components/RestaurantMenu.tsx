@@ -1,30 +1,30 @@
-import {useState, useEffect } from "react";
+import {useState} from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { MENU_API } from "../utils/Constant";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { MenuItemCard } from "../types/menu";
+import RestaurantCategory from "./RestaurantCategory";
+import { CDN_URL } from "../utils/Constant";
 
-// interface CategoryCard {
-//   card?: {
-//     card?: {
-//       title?: string;
-//       itemCards?: MenuItemCard[];
-//     };
-//   };
-// }
+interface CategoryCard {
+  card?: {
+    card?: {
+      title?: string;
+      itemCards?: MenuItemCard[];
+    };
+  };
+}
 
-const RestaurantMenu = () => {
+const RestaurantMenu: React.FC = () => {
     const { resId } = useParams<{ resId: string }>();
 
-    const { resInfo , menuItems  } = useRestaurantMenu(resId!);
+    const { resInfo , menuItems , categories} = useRestaurantMenu(resId!);
 
     // useEffect(() => {
     //     if(resId){
     //         fetchMenu();
     //     }
     // }, [resId]);
-
     // console.log("resId:", resId);
 
     // const fetchMenu = async() => {
@@ -34,35 +34,53 @@ const RestaurantMenu = () => {
     //     )
     //     const json = await data.json();
     //     console.log(json);
-
     // } 
+    //   const resName = resInfo?.cards?.[2]?.card?.info?.name;
+    //   const menuItems = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[5]?.card?.card?.itemCards
 
-    const regularCards = menuItems?.cards
-        ?.find((c: any) => c.groupedCard)
-        ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
-    const itemCards = regularCards
-        ?.map((c: any) => c.card?.card?.itemCards)
-        ?.flat()
-        ?.filter(Boolean);
-
-    console.log(itemCards);
+    if(!resInfo) return <Shimmer/>;
+    const { name, cuisines, cloudinaryImageId, costForTwoMessage } = resInfo;
 
 
-    return !resInfo ? <Shimmer /> : (
-        <div className= "Menu">
+    return (
+        <div className="text-center max-w-6xl mx-auto p-6 ">
 
-            <h1>{resInfo.name}</h1>
-            <h3>{resInfo.cuisines.join(", ")}</h3>
-            <h4>{resInfo.costForTwoMessage}</h4>
-            <h2>Menu</h2>
-            <ul>
-                {itemCards?.map((item: any, index: Number) => (
+            <h1 className="font-extrabold my-6 text-4xl text-gray-800">
+            {name}
+            </h1>
+
+            <img
+            className="mx-auto w-48 h-48 object-cover rounded-xl shadow-md mb-4"
+            alt="res-logo"
+            src={CDN_URL + cloudinaryImageId}
+            />
+
+            <p className="font-semibold text-lg text-gray-700">
+            {cuisines?.join(", ")}
+            </p>
+
+            <p className="text-gray-600 mt-1">
+            {costForTwoMessage}
+            </p>
+
+            <h2 className="mt-6 text-2xl font-bold text-gray-800 border-b pb-2">
+            Menu
+            </h2>
+            <div>
+                {categories.map((category)=> (
+                    <RestaurantCategory 
+                        key={category?.card?.card?.title}
+                        data={category?.card?.card}
+                    />
+                ))}
+            </div>
+            {/* <ul>
+                {itemCards?.map((item: any, index: number) => (
                     <li key={`${item.card.info.id}-${index}`}>
                         {item.card.info.name} - {'Rs '}{item.card.info.price / 100 || item.card.info.defaultPrice / 100}
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     )
 }
