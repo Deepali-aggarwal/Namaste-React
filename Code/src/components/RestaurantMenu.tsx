@@ -20,6 +20,9 @@ const RestaurantMenu: React.FC = () => {
 
     const { resInfo , menuItems , categories} = useRestaurantMenu(resId!);
 
+    const [showIndex , setShowIndex] = useState<number | null>(null);
+
+
     // useEffect(() => {
     //     if(resId){
     //         fetchMenu();
@@ -67,10 +70,12 @@ const RestaurantMenu: React.FC = () => {
             Menu
             </h2>
             <div>
-                {categories.map((category)=> (
+                {categories.map((category , index)=> (
                     <RestaurantCategory 
                         key={category?.card?.card?.title}
                         data={category?.card?.card}
+                        showItems = {index === showIndex ? true : false}
+                        setShowIndex={() => setShowIndex(index)}
                     />
                 ))}
             </div>
