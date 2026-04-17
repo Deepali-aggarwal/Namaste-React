@@ -6,7 +6,7 @@ interface ItemListProps{
 }
 
 const ItemList = ({items} : ItemListProps) => {
-    console.log(items);
+    // console.log(items);
     return(
         <div>
             {items?.map ((item) => (
