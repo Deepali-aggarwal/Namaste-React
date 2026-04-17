@@ -4,18 +4,20 @@ import { useState } from "react";
 
 interface RestaurantCategoryProps {
     data? : CategoryCardData
+    showItems : boolean;
+    setShowIndex : () => void
 }
 
-const RestaurantCategory = ({data} : RestaurantCategoryProps) => {
-    const [showItems, setShowItems] = useState(false);
+const RestaurantCategory = ({data, showItems , setShowIndex} : RestaurantCategoryProps) => {
     const handleClick = () => {
-        console.log("Click")
-        setShowItems(!showItems);
+        setShowIndex();
     }
+
+
     return (
             <div className="w-9/12 mx-auto my-4 bg-gray-50 shadow-lg p-4">
                 <div className="flex justify-between" onClick={handleClick}>
-                    <span className="text-lg font-bold">
+                    <span className="text-lg font-bold ">
                         {data?.title} ({data?.itemCards?.length})
                     </span>
                     <span>▼</span>
