@@ -2,6 +2,7 @@ import User from "./User";
 import UserClass from "./UserClass";
 import React from "react";
 import { UserClassProps } from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 class About extends React.Component<UserClassProps> {
     constructor(props : UserClassProps) {
@@ -16,6 +17,14 @@ class About extends React.Component<UserClassProps> {
         return (
             <div>
                 <h1>About</h1>
+                <div>
+                    LoggedInUser
+                    <UserContext.Consumer>
+                        {({loggedInUser}) => (
+                            <h1 className="text-xl font-bold">{loggedInUser} </h1>
+                        )}
+                    </UserContext.Consumer>
+                </div>
                 <h2>This is Namaste React Web Series</h2>
                 <UserClass name = {"Deepali (function)"}/>
             </div>
