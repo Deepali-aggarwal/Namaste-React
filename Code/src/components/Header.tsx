@@ -1,8 +1,13 @@
 import { LOGO_URL } from "../utils/Constant";
+import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import { useState , useContext } from "react";
 import { Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { RootState } from "../utils/AppStore";
+import { useSelector } from "react-redux";
+
 
 const Header = () => {
 
@@ -11,6 +16,9 @@ const Header = () => {
     const onlineStatus= useOnlineStatus();
 
     const data = useContext(UserContext);
+
+    //subscribing to the store using selector
+    const cartItems = useSelector((store : RootState) => store.cart.items);
 
     // if no dependency array => useeffect is called on every render
     //if dependency array is empty = [] => useEffect is called on initial render(just once)
@@ -39,7 +47,12 @@ const Header = () => {
                     <li className="px-4">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li className="px-4">Cart</li>
+                    <li className="px-4">
+                        <Link to="/cart">Cart</Link>
+                    </li>
+                    <li className="px-4 font-bold">
+                        <Link to={"/cart"}>
+                        <FontAwesomeIcon icon={faCartShopping} /> {cartItems.length} </Link></li>
                     <button 
                         className = "Login px-4" onClick={() => {
                             btnNameReact === "Login" ? setbtnNameReact("Logout") : setbtnNameReact("Login");
