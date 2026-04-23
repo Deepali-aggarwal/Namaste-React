@@ -86,11 +86,14 @@ const Body = () => {
 
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
+
     // Whenever state variable update, react triggers a reconciliation cycle(re- renders the components)
 
     useEffect(() => {
         fetchData();
     }, []); 
+
+    const {loggedInUser , setUserName} = useContext(UserContext);
 
     const fetchData = async () => {
         const data = await fetch(
@@ -114,7 +117,6 @@ const Body = () => {
         return <Shimmer/>
     };
 
-    const {loggedInUser , setUserName} = useContext(UserContext);
 
 
     return (
