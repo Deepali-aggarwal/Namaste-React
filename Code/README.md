@@ -69,3 +69,11 @@
 - dynamic bundling
 - lazy loading
 - on demand loading
+
+# Redux Toolkit
+- install @reduxjs/toolkit and react-redux
+- Build our store
+- connect our store to our app
+- slice (Cartslice)
+- dispatch (action)
+- selector
