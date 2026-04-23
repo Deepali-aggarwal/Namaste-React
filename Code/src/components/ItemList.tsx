@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { MenuItemCard } from "../types/menu";
+import { addItem } from "../utils/CartSlice";
 import { CDN_URL } from "../utils/Constant";
 
 interface ItemListProps{
@@ -7,6 +9,12 @@ interface ItemListProps{
 
 const ItemList = ({items} : ItemListProps) => {
     // console.log(items);
+
+    const dispatch = useDispatch();
+
+    const handleAddItem = (item : MenuItemCard) => {
+        dispatch(addItem(item));
+    }
     return(
         <div>
             {items?.map ((item) => (
@@ -24,7 +32,7 @@ const ItemList = ({items} : ItemListProps) => {
                         </div>
                         <div className="w-3/12 relative">
                             <img src= {CDN_URL + item.card.info.imageId}  className="w-full h-auto rounded-lg"/>
-                            <button className= "bottom-0 left-1/2 -translate-x-1/2 bg-white text-green-500 font-bold shadow-lg absolute m-auto px-8 py-1 rounded-lg border-gray-100 hover:bg-gray-200 cursor-pointer"> ADD</button>
+                            <button className= "bottom-0 left-1/2 -translate-x-1/2 bg-white text-green-500 font-bold shadow-lg absolute m-auto px-8 py-1 rounded-lg border-gray-100 hover:bg-gray-200 cursor-pointer" onClick={() => handleAddItem(item)}> ADD</button>
                         </div>
                     </div>
 
