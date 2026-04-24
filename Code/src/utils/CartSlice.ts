@@ -1,4 +1,4 @@
-import { createSlice , PayloadAction} from "@reduxjs/toolkit";
+import { createSlice , current, PayloadAction} from "@reduxjs/toolkit";
 import { MenuItemCard } from "../types/menu";
 
 interface CartState{
@@ -28,7 +28,9 @@ const cartslice = createSlice({
             state.items.pop();
         },
         clearCart : (state) => {
-        // In redux you can not read the state directly because that will be a proxy object and for reading the original state we need "current"    
+        // In redux you can not read the state directly because that will be a proxy object and for reading the original state we need "current" 
+        
+        // console.log(current(state));
             state.items.length = 0;
         }
 
